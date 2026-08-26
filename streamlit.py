@@ -3,7 +3,7 @@ import tempfile
 import os
 from main import process_document, get_response
 
-st.title("AI Study Coach")
+st.title("DocuMind")
 
 uploaded_file = st.file_uploader(
     "Upload your study document",
