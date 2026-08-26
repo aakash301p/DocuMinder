@@ -29,9 +29,7 @@ class DocumentLoader:
 
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"File not found at path: {file_path}")
-
-        ext = os.path.splitext(file_path).lower()
-
+        ext = os.path.splitext(file_path)[1].lower()
         loader_class = cls.REGISTRY.get(ext, cls._FALLBACK)
 
         loader = loader_class(file_path)
