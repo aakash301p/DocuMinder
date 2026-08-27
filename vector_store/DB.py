@@ -5,19 +5,14 @@ from service.splitter import Splitter
 
 load_dotenv()
 
-PERSIST_DIR = "/home/tx1026/PycharmProjects/AI-Study-Coach/vector_store/chroma_langchain_db/"
-
 def build_vector_store(file_paths: list[str]) -> Chroma:
     chunks = Splitter.split_to_raw_chunks(file_paths)
 
-    vector_store = Chroma(
+    vector_store = Chroma.from_documents(
+        documents=chunks,
+        embedding=embeddings,
         collection_name="study_coach",
-        embedding_function=embeddings,
-        persist_directory=PERSIST_DIR,
     )
-
-    vector_store.reset_collection()
-    vector_store.add_documents(chunks)
 
     return vector_store
 
