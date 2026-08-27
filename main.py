@@ -11,11 +11,9 @@ def process_document(file_paths: list[str]):
 
 def get_response(vector_store, user_query: str) -> str:
     context = get_relevant_context(vector_store, user_query, k=4)
-
     messages = [
         SystemMessage(content=prompt + "\n\n" + context),
         HumanMessage(content=user_query),
     ]
-
     response = client.invoke(messages)
     return response.content
